@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lightstudio-v1';
+const CACHE_NAME = 'lightstudio-v2';
 const APP_SHELL = [
     './',
     './index.html',
