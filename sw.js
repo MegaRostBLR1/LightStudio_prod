@@ -53,6 +53,23 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    const isWebP = requestUrl.pathname.toLowerCase().endsWith('.webp');
+
+    if (isWebP) {
+        event.respondWith(
+            fetch(event.request)
+                .then((response) => {
+                    if (response.ok) {
+                        const copy = response.clone();
+                        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+                    }
+                    return response;
+                })
+                .catch(() => caches.match(event.request))
+        );
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
             if (cachedResponse) {
