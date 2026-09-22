@@ -22,7 +22,7 @@ jobs:
           find static/images -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0 |
             while IFS= read -r -d '' file; do
               output="${file%.*}.webp"
-              magick "$file" -strip -quality 85 "$output"
+              convert "$file" -strip -quality 85 "$output"
             done
 
       - name: Commit generated WebP files
