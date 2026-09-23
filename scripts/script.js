@@ -1,4 +1,19 @@
 (()=>{
+    const unregisterLegacyServiceWorker = async () => {
+        if (!('serviceWorker' in navigator)) return;
+
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        const legacyRegistrations = registrations.filter(registration =>
+            registration.active?.scriptURL.endsWith('/sw.js')
+        );
+
+        await Promise.all(
+            legacyRegistrations.map(registration => registration.unregister())
+        );
+    };
+
+    unregisterLegacyServiceWorker().catch(() => {});
+
 // Database of all 17 models from references
 const products = [
     {
