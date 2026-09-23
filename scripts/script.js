@@ -240,6 +240,8 @@ const products = [
 
 const PRODUCT_EQUIPMENT = 'Подвесная система с креплением к потолку, цоколь E27, провод 1 м — длина регулируется. Рекомендуется использование филаментных ламп (как на фото) для создания максимально уютной атмосферы. Лампа приобретается отдельно.';
 
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJEAHcwK6fR_Gy2NMLu8vHt9z_STkTb5FM6Q27ZqqSRBp_IZ2-277GOFR43Y_wLH44/exec';
+
 const CART_STORAGE_KEY = 'lightStudioCart';
 let cart = [];
 let currentFilter = 'all';
@@ -923,7 +925,7 @@ document.addEventListener('click', event => {
     updateDeliveryOptions();
     formComment.addEventListener('input', validateComment);
 
-    orderForm.addEventListener('submit', (e) => {
+    orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         if (!validateOrderForm() || !orderForm.checkValidity()) {
@@ -931,8 +933,67 @@ document.addEventListener('click', event => {
             return;
         }
 
-        lastModalTrigger = e.submitter || document.querySelector('#orderForm button[type="submit"]');
-        openModal();
+        const submitButton = e.submitter || orderForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        const successModalTitle = document.getElementById('successModalTitle');
+        const successModalMessage = document.querySelector('#successModal .modal-message');
+
+        const payload = {
+            name: formName.value.trim(),
+            phone: formPhone.value.trim(),
+            settlement: formSettlement.value.trim(),
+            delivery: formDelivery.options[formDelivery.selectedIndex]?.textContent.trim() || formDelivery.value,
+            comment: formComment.value.trim(),
+            website: '',
+            products: cart.map(item => ({
+                title: item.title,
+                quantity: item.qty,
+                price: item.price
+            }))
+        };
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
+
+        try {
+            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: new URLSearchParams({
+                    payload: JSON.stringify(payload)
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка отправки заявки.');
+            }
+
+            const result = await response.json();
+
+            if (!result.success) {
+                throw new Error(result.error || 'Не удалось отправить заявку.');
+            }
+
+            successModalTitle.textContent = 'Заявка отправлена';
+            successModalMessage.textContent = 'Спасибо! Данные заявки отправлены менеджеру. Мы свяжемся с Вами для уточнения деталей.';
+            lastModalTrigger = submitButton;
+            openModal();
+            orderForm.reset();
+            cart = [];
+            updateCart();
+            updateDeliveryOptions();
+        } catch (error) {
+            console.error('Ошибка отправки заявки:', error);
+            successModalTitle.textContent = 'Не удалось отправить заявку';
+            successModalMessage.textContent = 'Произошла ошибка при отправке. Проверьте подключение к интернету и попробуйте ещё раз.';
+            lastModalTrigger = submitButton;
+            openModal();
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }
     });
 
     document.getElementById('productModal').addEventListener('click', event => {
