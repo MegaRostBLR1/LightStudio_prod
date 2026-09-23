@@ -553,7 +553,18 @@ function openProductModal(productId, trigger = null) {
     document.getElementById('productModalPrice').textContent = `${product.price} BYN`;
     document.getElementById('productModalType').textContent = product.type;
     document.getElementById('productModalSize').textContent = product.size;
-    document.getElementById('product-modal-equipment-url').setAttribute(`href`, `${product.url}`);
+
+    const equipmentUrl = document.getElementById('product-modal-equipment-url');
+    const hasEquipmentUrl = typeof product.url === 'string' && product.url.trim() !== '';
+
+    equipmentUrl.hidden = !hasEquipmentUrl;
+
+    if (hasEquipmentUrl) {
+        equipmentUrl.href = product.url;
+    } else {
+        equipmentUrl.removeAttribute('href');
+    }
+
     document.getElementById('productModalEquipment').textContent = PRODUCT_EQUIPMENT;
     setProductModalImage(image, gallery[0], product.title, modal);
     counter.textContent = `1 / ${gallery.length}`;
