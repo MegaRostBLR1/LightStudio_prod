@@ -220,26 +220,32 @@ function saveCart() {
 function loadCart() {
     try {
         const savedCart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
-        if (!Array.isArray(savedCart)) return;
 
-        if (!products.length) {
-            cart = savedCart.filter(item => Number.isInteger(item.qty) && item.qty > 0);
+        if (!Array.isArray(savedCart)) {
+            cart = [];
             return;
         }
 
-        cart = savedCart.reduce((restoredCart, item) => {
-            const product = findProduct(item.id);
-
-            if (product && Number.isInteger(item.qty) && item.qty > 0) {
-                restoredCart.push({ ...product, qty: item.qty });
-            }
-
-            return restoredCart;
-        }, []);
+        cart = savedCart.filter(item => Number.isInteger(item.qty) && item.qty > 0);
+        hydrateCart();
     } catch (error) {
         console.warn('Не удалось загрузить корзину:', error);
         cart = [];
     }
+}
+
+function hydrateCart() {
+    if (!products.length) return;
+
+    cart = cart.reduce((restoredCart, item) => {
+        const product = findProduct(item.id);
+
+        if (product) {
+            restoredCart.push({ ...product, qty: item.qty });
+        }
+
+        return restoredCart;
+    }, []);
 }
 
 function openCart() {
@@ -574,13 +580,15 @@ document.addEventListener('click', event => {
     });
 
     document.addEventListener('DOMContentLoaded', () => {
+    loadCart();
+    updateCart();
+
     loadProducts()
         .then(() => {
-            loadCart();
+            hydrateCart();
             updateCart();
         })
         .catch(error => {
-            loadCart();
             console.error('Ошибка загрузки каталога:', error);
         });
 
