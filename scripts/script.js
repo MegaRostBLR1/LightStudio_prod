@@ -222,6 +222,11 @@ function loadCart() {
         const savedCart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
         if (!Array.isArray(savedCart)) return;
 
+        if (!products.length) {
+            cart = savedCart.filter(item => Number.isInteger(item.qty) && item.qty > 0);
+            return;
+        }
+
         cart = savedCart.reduce((restoredCart, item) => {
             const product = findProduct(item.id);
 
@@ -569,11 +574,13 @@ document.addEventListener('click', event => {
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-    loadCart();
-    updateCart();
-
     loadProducts()
+        .then(() => {
+            loadCart();
+            updateCart();
+        })
         .catch(error => {
+            loadCart();
             console.error('Ошибка загрузки каталога:', error);
         });
 
