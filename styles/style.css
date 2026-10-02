@@ -1,3 +1,7 @@
+[hidden] {
+    display: none !important;
+}
+
 @font-face {
     font-family: 'Cormorant Garamond';
     font-style: normal;
