@@ -15,231 +15,11 @@
     unregisterLegacyServiceWorker().catch(() => {});
 
 // Database of all 17 models from references
-const products = [
-    {
-        id: 'manhattan',
-        title: 'MANHATTAN',
-        subtitle: 'Манхэттен НП',
-        price: 85,
-        size: '56 × 15 см',
-        category: 'universal',
-        type: 'Потолочный/настольный светильник',
-        desc: 'Вертикальные ламели Manhattan дают тонкие тёплые тени и делают свет живым. Хорош для серии над столом, барной стойкой или камерной зоной кафе.',
-        img: './static/images/manhattan/manhattan.webp',
-        gallery: ['./static/images/manhattan/manhattan-desktop.webp', './static/images/manhattan/manhattan-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DdOxPJUgG-b/'
-    },
-    {
-        id: 'lotus',
-        title: 'LOTUS',
-        subtitle: 'Лотос НП',
-        price: 85,
-        size: '25 × 27 см',
-        category: 'universal',
-        type: 'Потолочный/настольный светильник',
-        desc: 'Lotus мягко раскрывает свет и рисует деликатные тени на стенах. Форма добавляет интерьеру спокойствие, уют и лёгкий природный акцент.',
-        img: './static/images/lotus/lotus.webp',
-        gallery: ['./static/images/lotus/lotus-desktop.webp', './static/images/lotus/lotus-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DdWcwBtAG8C/'
-    },
-    {
-        id: 'onyx',
-        title: 'ONYX',
-        subtitle: 'Оникс НП',
-        price: 85,
-        size: '25 × 22 см',
-        category: 'universal',
-        type: 'Потолочный/настольный светильник',
-        desc: 'Onyx даёт компактный, но выразительный световой рисунок. Ламели создают атмосферные тени, а дерево добавляет пространству тепло.',
-        img: './static/images/onyx/onyx.webp',
-        gallery: ['./static/images/onyx/onyx-desktop.webp', './static/images/onyx/onyx-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DdJxunLgonG/'
-    },
-    {
-        id: 'sonata',
-        title: 'SONATA',
-        subtitle: 'Соната НП',
-        price: 85,
-        size: '25 × 24 см',
-        category: 'universal',
-        type: 'Потолочный/настольный светильник',
-        desc: 'Sonata строит красивую графику света за счёт геометрии ламелей. В группе особенно эффектно смотрится над кухней, баром или ресторанными столиками.',
-        img: './static/images/sonata/sonata.webp',
-        gallery: ['./static/images/sonata/sonata-desktop.webp', './static/images/sonata/sonata-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DdJxunLgonG/'
-    },
-    {
-        id: 'cascade',
-        title: 'CASCADE',
-        subtitle: 'Каскад НП',
-        price: 125,
-        size: '36 × 15 см',
-        category: 'universal',
-        type: 'Потолочный/настольный светильник',
-        desc: 'Cascade подчёркивает высоту пространства и даёт вытянутые ритмичные тени. Лёгкая форма красиво работает как одиночно, так и в нескольких повторах.',
-        img: './static/images/cascade/cascade.webp',
-        gallery: ['./static/images/cascade/cascade-desktop.webp', './static/images/cascade/cascade-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DcjHgX_MD6A/'
-    },
-    {
-        id: 'prisma',
-        title: 'PRISMA',
-        subtitle: 'Призма НП',
-        price: 125,
-        size: '25 × 28 см',
-        category: 'universal',
-        type: 'Потолочный/настольный светильник',
-        desc: 'Prisma создаёт игру граней, света и теней. Деревянный каркас добавляет глубину, а ламели формируют выразительный рисунок в интерьере.',
-        img: './static/images/prisma/prisma.webp',
-        gallery: ['./static/images/prisma/prisma-desktop.webp', './static/images/prisma/prisma-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DdT-kJ-Aw6O/'
-    },
-    {
-        id: 'grace',
-        title: 'GRACE',
-        subtitle: 'Грация',
-        price: 205,
-        size: '40 × 40 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Grace смотрится мягко и скульптурно, а свет через ламели даёт красивые спокойные тени. Для обеденной зоны, гостиной, веранды или уютного кафе.',
-        img: './static/images/grace/grace.webp',
-        gallery: ['./static/images/grace/grace-ceiling.webp', './static/images/grace/grace-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/DdBZwhsOntM/'
-    },
-    {
-        id: 'bastion',
-        title: 'BASTION',
-        subtitle: 'Бастион',
-        price: 150,
-        size: '47 × 24 см',
-        category: 'universal',
-        type: 'Потолочный/настольный/напольный',
-        desc: 'Bastion выделяется высокой тонкой силуэтностью и глубокими тенями от ламелей. Может быть потолочным акцентом, настольным объектом или напольным светильником.',
-        img: './static/images/bastion/bastion.webp',
-        gallery: ['./static/images/bastion/bastion-desktop.webp', './static/images/bastion/bastion-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DdJgtOTudXr/'
-    },
-    {
-        id: 'orbit',
-        title: 'ORBIT',
-        subtitle: 'Орбита',
-        price: 155,
-        size: '20 × 40 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Orbit раскрывает свет широкой горизонтальной формой. Ламели дают мягкие тени на поверхности и создают уютную атмосферу над столом или в гостиной.',
-        img: './static/images/orbit/orbit.webp',
-        gallery: ['./static/images/orbit/orbit-ceiling.webp', './static/images/orbit/orbit-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/DclzLBqyudp/'
-    },
-    {
-        id: 'orbit2',
-        title: 'ORBIT № 2',
-        subtitle: 'Орбита № 2',
-        price: 205,
-        size: '20 × 60–61 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Orbit № 2 — крупный световой акцент для просторных зон. Широкая форма и тени от ламелей красиво собирают композицию над большим столом.',
-        img: './static/images/orbit2/orbit2.webp',
-        gallery: ['./static/images/orbit2/orbit2-ceiling.webp', './static/images/orbit2/orbit2-ceiling-2.webp']
-    },
-    {
-        id: 'pantheon',
-        title: 'PANTHEON',
-        subtitle: 'Пантеон',
-        price: 180,
-        size: '32 × 32 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Pantheon напоминает архитектурный купол и создаёт благородную игру теней. Модель подчёркивает входные зоны, коридоры, столовые и гостиные.',
-        img: './static/images/pantheon/pantheon.webp',
-        gallery: ['./static/images/pantheon/pantheon-ceiling.webp', './static/images/pantheon/pantheon-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/Dc_Y1S2pQcM/'
-    },
-    {
-        id: 'element5',
-        title: '5 ELEMENT',
-        subtitle: '5 Элемент П',
-        price: 125,
-        size: '25 × 25 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: '5 Element — чистая геометрия и аккуратный световой акцент. Ламели дают красивые тени, поэтому модель особенно хорошо смотрится в коридорах и у входа.',
-        img: './static/images/element5/element5.webp',
-        gallery: ['./static/images/element5/element5-ceiling.webp', './static/images/element5/element5-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/Dc3Of-hOFux/'
-    },
-    {
-        id: 'sphere',
-        title: 'SPHERE',
-        subtitle: 'Сфера',
-        price: 125,
-        size: '30 × 30 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Sphere создаёт мягкий круглый ореол света и спокойную игру теней. Подходит для интерьеров, где важны форма, тепло и премиальный уют.',
-        img: './static/images/sphere/sphere.webp',
-        gallery: ['./static/images/sphere/sphere-ceiling.webp', './static/images/sphere/sphere-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/DcyewvNgj-F/'
-    },
-    {
-        id: 'coliseum',
-        title: 'COLISEUM',
-        subtitle: 'Колизей',
-        price: 205,
-        size: '16 × 38 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Coliseum — низкая широкая модель для столов и зон отдыха. Ламели подчёркивают горизонталь пространства и дают выразительные атмосферные тени.',
-        img: './static/images/coliseum/coliseum.webp',
-        gallery: ['./static/images/coliseum/coliseum-ceiling.webp', './static/images/coliseum/coliseum-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/DdEUQuoOOpE/'
-    },
-    {
-        id: 'babylon',
-        title: 'BABYLON',
-        subtitle: 'Вавилон',
-        price: 205,
-        size: '20 × 39 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Babylon строится на многослойной форме и плотном ритме деталей. Свет проходит через ламели и создаёт глубокие тени, добавляя интерьеру объём.',
-        img: './static/images/babylon/babylon.webp',
-        gallery: ['./static/images/babylon/babylon-ceiling.webp', './static/images/babylon/babylon-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/DdHDQLxgN4C/'
-    },
-    {
-        id: 'umbrella',
-        title: 'UMBRELLA',
-        subtitle: 'Амбрелла',
-        price: 205,
-        size: '37 × 40 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Umbrella — это не просто источник света, а современный арт-объект. Сложная 3D-конструкция из деревянных граней отдаленно напоминает купол зонта (отсюда и название), приглашая свет мягко рассеиваться сквозь слои. Стильное решение для тех, кто ценит нестандартный предметный дизайн.',
-        img: './static/images/umbrella/umbrella.webp',
-        gallery: ['./static/images/umbrella/umbrella-ceiling.webp'],
-        url: 'https://www.instagram.com/p/DdY0Jp_uD7c/'
-    },
-    {
-        id: 'musa',
-        title: 'MUSA',
-        subtitle: 'Муза',
-        price: 450,
-        size: '24 × 48 см',
-        category: 'pendant',
-        type: 'Потолочный светильник',
-        desc: 'Musa — искусство, которое говорит без слов. Этот светильник выполнялся по индивидуальному заказу одной из студий красоты и получился настолько авторским, что стал частью ассортимента. Это не просто светильник, а центральный арт-объект, который превращает обычный интерьер в галерею современного искусства.',
-        img: './static/images/musa/musa.webp',
-        gallery: ['./static/images/musa/musa-ceiling.webp', './static/images/musa/musa-ceiling-2.webp'],
-        url: 'https://www.instagram.com/p/DdgDTm6uPSQ/'
-    }
-];
+let products = [];
 
 const PRODUCT_EQUIPMENT = 'Подвесная система с креплением к потолку, цоколь E27, провод 1 м — длина регулируется. Рекомендуется использование филаментных ламп (как на фото) для создания максимально уютной атмосферы. Лампа приобретается отдельно.';
 
+const PRODUCTS_API_URL = 'https://script.google.com/macros/s/AKfycbxfOdC6RjMtQWYf8VhDyIcsnqPjJQRWeXExkgbKHZopwf5yDQNK9QxGzFx-V0Gxayanug/exec';
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJEAHcwK6fR_Gy2NMLu8vHt9z_STkTb5FM6Q27ZqqSRBp_IZ2-277GOFR43Y_wLH44/exec';
 
 const CART_STORAGE_KEY = 'lightStudioCart';
@@ -249,6 +29,22 @@ let currentSort = 'default';
 let lastCartTrigger = null;
 let lastModalTrigger = null;
 let successModalCloseTimer = null;
+
+async function loadProducts() {
+    const response = await fetch(`${PRODUCTS_API_URL}?action=products`);
+
+    if (!response.ok) {
+        throw new Error(`Не удалось загрузить каталог: HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+        throw new Error('API каталога вернул некорректный формат данных.');
+    }
+
+    products = data;
+}
 
 function findProduct(productId) {
     return products.find(product => product.id === productId);
@@ -731,8 +527,15 @@ document.addEventListener('click', event => {
 
     document.addEventListener('DOMContentLoaded', () => {
     loadCart();
-    updateCatalog();
     updateCart();
+
+    loadProducts()
+        .then(() => {
+            updateCatalog();
+        })
+        .catch(error => {
+            console.error('Ошибка загрузки каталога:', error);
+        });
 
     // Cart listeners
     document.getElementById('openCartBtn').addEventListener('click', openCart);
