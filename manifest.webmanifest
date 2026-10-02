@@ -1,0 +1,25 @@
+{
+    "name": "V&A LightStudio",
+    "short_name": "LightStudio",
+    "description": "Авторские деревянные светильники из натурального берёзового шпона.",
+    "lang": "ru",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#F8F5F0",
+    "theme_color": "#2C2825",
+    "icons": [
+        {
+            "src": "./static/icons/icon-192.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "./static/icons/icon-512.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
