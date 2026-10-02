@@ -23,6 +23,7 @@ const PRODUCTS_API_URL = 'https://script.google.com/macros/s/AKfycbxfOdC6RjMtQWY
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJEAHcwK6fR_Gy2NMLu8vHt9z_STkTb5FM6Q27ZqqSRBp_IZ2-277GOFR43Y_wLH44/exec';
 
 const CART_STORAGE_KEY = 'lightStudioCart';
+const PRODUCTS_CACHE_KEY = 'lightStudioProducts';
 let cart = [];
 let currentFilter = 'all';
 let currentSort = 'default';
@@ -30,20 +31,62 @@ let lastCartTrigger = null;
 let lastModalTrigger = null;
 let successModalCloseTimer = null;
 
+function getCachedProducts() {
+    try {
+        const cached = localStorage.getItem(PRODUCTS_CACHE_KEY);
+
+        if (!cached) {
+            return null;
+        }
+
+        const data = JSON.parse(cached);
+
+        return Array.isArray(data) ? data : null;
+    } catch (error) {
+        console.warn('Не удалось прочитать кэш каталога:', error);
+        return null;
+    }
+}
+
+function saveProductsToCache(data) {
+    try {
+        localStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(data));
+    } catch (error) {
+        console.warn('Не удалось сохранить кэш каталога:', error);
+    }
+}
+
 async function loadProducts() {
-    const response = await fetch(`${PRODUCTS_API_URL}?action=products`);
+    const cachedProducts = getCachedProducts();
 
-    if (!response.ok) {
-        throw new Error(`Не удалось загрузить каталог: HTTP ${response.status}`);
+    if (cachedProducts) {
+        products = cachedProducts;
+        updateCatalog();
     }
 
-    const data = await response.json();
+    try {
+        const response = await fetch(`${PRODUCTS_API_URL}?action=products`);
 
-    if (!Array.isArray(data)) {
-        throw new Error('API каталога вернул некорректный формат данных.');
+        if (!response.ok) {
+            throw new Error(`Не удалось загрузить каталог: HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error('API каталога вернул некорректный формат данных.');
+        }
+
+        products = data;
+        saveProductsToCache(data);
+        updateCatalog();
+    } catch (error) {
+        if (!cachedProducts) {
+            throw error;
+        }
+
+        console.error('Не удалось обновить каталог, используется сохранённый кэш:', error);
     }
-
-    products = data;
 }
 
 function findProduct(productId) {
@@ -530,9 +573,6 @@ document.addEventListener('click', event => {
     updateCart();
 
     loadProducts()
-        .then(() => {
-            updateCatalog();
-        })
         .catch(error => {
             console.error('Ошибка загрузки каталога:', error);
         });
