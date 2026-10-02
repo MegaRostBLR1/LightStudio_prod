@@ -27,6 +27,7 @@ const products = [
         desc: 'Вертикальные ламели Manhattan дают тонкие тёплые тени и делают свет живым. Хорош для серии над столом, барной стойкой или камерной зоной кафе.',
         img: './static/images/manhattan/manhattan.webp',
         gallery: ['./static/images/manhattan/manhattan-desktop.webp', './static/images/manhattan/manhattan-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DdOxPJUgG-b/'
     },
     {
         id: 'lotus',
@@ -38,7 +39,8 @@ const products = [
         type: 'Потолочный/настольный светильник',
         desc: 'Lotus мягко раскрывает свет и рисует деликатные тени на стенах. Форма добавляет интерьеру спокойствие, уют и лёгкий природный акцент.',
         img: './static/images/lotus/lotus.webp',
-        gallery: ['./static/images/lotus/lotus-desktop.webp', './static/images/lotus/lotus-ceiling.webp']
+        gallery: ['./static/images/lotus/lotus-desktop.webp', './static/images/lotus/lotus-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DdWcwBtAG8C/'
     },
     {
         id: 'onyx',
@@ -50,7 +52,8 @@ const products = [
         type: 'Потолочный/настольный светильник',
         desc: 'Onyx даёт компактный, но выразительный световой рисунок. Ламели создают атмосферные тени, а дерево добавляет пространству тепло.',
         img: './static/images/onyx/onyx.webp',
-        gallery: ['./static/images/onyx/onyx-desktop.webp', './static/images/onyx/onyx-ceiling.webp']
+        gallery: ['./static/images/onyx/onyx-desktop.webp', './static/images/onyx/onyx-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DdJxunLgonG/'
     },
     {
         id: 'sonata',
@@ -62,7 +65,8 @@ const products = [
         type: 'Потолочный/настольный светильник',
         desc: 'Sonata строит красивую графику света за счёт геометрии ламелей. В группе особенно эффектно смотрится над кухней, баром или ресторанными столиками.',
         img: './static/images/sonata/sonata.webp',
-        gallery: ['./static/images/sonata/sonata-desktop.webp', './static/images/sonata/sonata-ceiling.webp']
+        gallery: ['./static/images/sonata/sonata-desktop.webp', './static/images/sonata/sonata-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DdJxunLgonG/'
     },
     {
         id: 'cascade',
@@ -74,7 +78,8 @@ const products = [
         type: 'Потолочный/настольный светильник',
         desc: 'Cascade подчёркивает высоту пространства и даёт вытянутые ритмичные тени. Лёгкая форма красиво работает как одиночно, так и в нескольких повторах.',
         img: './static/images/cascade/cascade.webp',
-        gallery: ['./static/images/cascade/cascade-desktop.webp', './static/images/cascade/cascade-ceiling.webp']
+        gallery: ['./static/images/cascade/cascade-desktop.webp', './static/images/cascade/cascade-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DcjHgX_MD6A/'
     },
     {
         id: 'prisma',
@@ -86,7 +91,8 @@ const products = [
         type: 'Потолочный/настольный светильник',
         desc: 'Prisma создаёт игру граней, света и теней. Деревянный каркас добавляет глубину, а ламели формируют выразительный рисунок в интерьере.',
         img: './static/images/prisma/prisma.webp',
-        gallery: ['./static/images/prisma/prisma-desktop.webp', './static/images/prisma/prisma-ceiling.webp']
+        gallery: ['./static/images/prisma/prisma-desktop.webp', './static/images/prisma/prisma-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DdT-kJ-Aw6O/'
     },
     {
         id: 'grace',
@@ -98,7 +104,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Grace смотрится мягко и скульптурно, а свет через ламели даёт красивые спокойные тени. Для обеденной зоны, гостиной, веранды или уютного кафе.',
         img: './static/images/grace/grace.webp',
-        gallery: ['./static/images/grace/grace-ceiling.webp', './static/images/grace/grace-ceiling-2.webp']
+        gallery: ['./static/images/grace/grace-ceiling.webp', './static/images/grace/grace-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/DdBZwhsOntM/'
     },
     {
         id: 'bastion',
@@ -110,7 +117,8 @@ const products = [
         type: 'Потолочный/настольный/напольный',
         desc: 'Bastion выделяется высокой тонкой силуэтностью и глубокими тенями от ламелей. Может быть потолочным акцентом, настольным объектом или напольным светильником.',
         img: './static/images/bastion/bastion.webp',
-        gallery: ['./static/images/bastion/bastion-desktop.webp', './static/images/bastion/bastion-ceiling.webp']
+        gallery: ['./static/images/bastion/bastion-desktop.webp', './static/images/bastion/bastion-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DdJgtOTudXr/'
     },
     {
         id: 'orbit',
@@ -122,7 +130,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Orbit раскрывает свет широкой горизонтальной формой. Ламели дают мягкие тени на поверхности и создают уютную атмосферу над столом или в гостиной.',
         img: './static/images/orbit/orbit.webp',
-        gallery: ['./static/images/orbit/orbit-ceiling.webp', './static/images/orbit/orbit-ceiling-2.webp']
+        gallery: ['./static/images/orbit/orbit-ceiling.webp', './static/images/orbit/orbit-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/DclzLBqyudp/'
     },
     {
         id: 'orbit2',
@@ -146,7 +155,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Pantheon напоминает архитектурный купол и создаёт благородную игру теней. Модель подчёркивает входные зоны, коридоры, столовые и гостиные.',
         img: './static/images/pantheon/pantheon.webp',
-        gallery: ['./static/images/pantheon/pantheon-ceiling.webp', './static/images/pantheon/pantheon-ceiling-2.webp']
+        gallery: ['./static/images/pantheon/pantheon-ceiling.webp', './static/images/pantheon/pantheon-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/Dc_Y1S2pQcM/'
     },
     {
         id: 'element5',
@@ -158,7 +168,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: '5 Element — чистая геометрия и аккуратный световой акцент. Ламели дают красивые тени, поэтому модель особенно хорошо смотрится в коридорах и у входа.',
         img: './static/images/element5/element5.webp',
-        gallery: ['./static/images/element5/element5-ceiling.webp', './static/images/element5/element5-ceiling-2.webp']
+        gallery: ['./static/images/element5/element5-ceiling.webp', './static/images/element5/element5-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/Dc3Of-hOFux/'
     },
     {
         id: 'sphere',
@@ -170,7 +181,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Sphere создаёт мягкий круглый ореол света и спокойную игру теней. Подходит для интерьеров, где важны форма, тепло и премиальный уют.',
         img: './static/images/sphere/sphere.webp',
-        gallery: ['./static/images/sphere/sphere-ceiling.webp', './static/images/sphere/sphere-ceiling-2.webp']
+        gallery: ['./static/images/sphere/sphere-ceiling.webp', './static/images/sphere/sphere-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/DcyewvNgj-F/'
     },
     {
         id: 'coliseum',
@@ -182,7 +194,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Coliseum — низкая широкая модель для столов и зон отдыха. Ламели подчёркивают горизонталь пространства и дают выразительные атмосферные тени.',
         img: './static/images/coliseum/coliseum.webp',
-        gallery: ['./static/images/coliseum/coliseum-ceiling.webp', './static/images/coliseum/coliseum-ceiling-2.webp']
+        gallery: ['./static/images/coliseum/coliseum-ceiling.webp', './static/images/coliseum/coliseum-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/DdEUQuoOOpE/'
     },
     {
         id: 'babylon',
@@ -194,7 +207,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Babylon строится на многослойной форме и плотном ритме деталей. Свет проходит через ламели и создаёт глубокие тени, добавляя интерьеру объём.',
         img: './static/images/babylon/babylon.webp',
-        gallery: ['./static/images/babylon/babylon-ceiling.webp', './static/images/babylon/babylon-ceiling-2.webp']
+        gallery: ['./static/images/babylon/babylon-ceiling.webp', './static/images/babylon/babylon-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/DdHDQLxgN4C/'
     },
     {
         id: 'umbrella',
@@ -206,7 +220,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Umbrella — это не просто источник света, а современный арт-объект. Сложная 3D-конструкция из деревянных граней отдаленно напоминает купол зонта (отсюда и название), приглашая свет мягко рассеиваться сквозь слои. Стильное решение для тех, кто ценит нестандартный предметный дизайн.',
         img: './static/images/umbrella/umbrella.webp',
-        gallery: ['./static/images/umbrella/umbrella-ceiling.webp']
+        gallery: ['./static/images/umbrella/umbrella-ceiling.webp'],
+        url: 'https://www.instagram.com/p/DdY0Jp_uD7c/'
     },
     {
         id: 'musa',
@@ -218,7 +233,8 @@ const products = [
         type: 'Потолочный светильник',
         desc: 'Musa — искусство, которое говорит без слов. Этот светильник выполнялся по индивидуальному заказу одной из студий красоты и получился настолько авторским, что стал частью ассортимента. Это не просто светильник, а центральный арт-объект, который превращает обычный интерьер в галерею современного искусства.',
         img: './static/images/musa/musa.webp',
-        gallery: ['./static/images/musa/musa-ceiling.webp', './static/images/musa/musa-ceiling-2.webp']
+        gallery: ['./static/images/musa/musa-ceiling.webp', './static/images/musa/musa-ceiling-2.webp'],
+        url: 'https://www.instagram.com/p/DdgDTm6uPSQ/'
     }
 ];
 
@@ -537,6 +553,7 @@ function openProductModal(productId, trigger = null) {
     document.getElementById('productModalPrice').textContent = `${product.price} BYN`;
     document.getElementById('productModalType').textContent = product.type;
     document.getElementById('productModalSize').textContent = product.size;
+    document.getElementById('product-modal-equipment-url').setAttribute(`href`, `${product.url}`);
     document.getElementById('productModalEquipment').textContent = PRODUCT_EQUIPMENT;
     setProductModalImage(image, gallery[0], product.title, modal);
     counter.textContent = `1 / ${gallery.length}`;
